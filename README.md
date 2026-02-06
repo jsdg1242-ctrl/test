@@ -1,3 +1,7 @@
+
+https://setaswall.com/wp-content/uploads/2018/12/Huawei-MediaPad-T5-Stock-Wallpaper-3-2400x1920.jpg
+
+
 http://onezerogdps.7m.pl/database/download/Android/WithoutTexturePack/1.0GDPS.apk
 
 
