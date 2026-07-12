@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>giercownia - Red Ball 5</title>
+<style>
+/* Base page styling to match the green background */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #a9d19a; /* Matches the green side borders */
+    display: flex;
+    justify-content: center;
+}
+
+/* Main central wrapper */
+.main-container {
+    width: 1000px;
+    background-color: #ffffff;
+    min-height: 100vh;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* Header containing logo, search, and add game button */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #ffffff;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 900;
+    color: #333;
+    letter-spacing: -1px;
+    display: flex;
+    align-items: center;
+}
+
+.logo span.bomb-icon {
+    background-color: #1a1a1a;
+    color: #fff;
+    border-radius: 50%;
+    padding: 2px 5px;
+    font-size: 20px;
+    margin: 0 2px;
+}
+
+.search-box {
+    display: flex;
+    border: 1px solid #ccc;
+}
+
+.search-box input {
+    padding: 8px 12px;
+    border: none;
+    width: 200px;
+    color: #999;
+    outline: none;
+}
+
+.search-box button {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.add-game-btn {
+    background-color: #4a7ff0;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Dark navigation bar */
+.navbar {
+    background-color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 13px;
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links a {
+    color: #ccc;
+    text-decoration: none;
+    padding: 12px 18px;
+    border-right: 1px solid #444;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    background-color: #444;
+    color: white;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-right a {
+    color: #333;
+    background-color: #f5f5f5;
+    text-decoration: none;
+    padding: 12px 15px;
+    border-left: 1px solid #ddd;
+}
+
+.social-icons {
+    background-color: #f5f5f5;
+    padding: 12px 15px;
+    border-left: 1px solid #ddd;
+    display: flex;
+    gap: 10px;
+}
+
+/* Breadcrumb and stats bar */
+.breadcrumbs {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+    font-size: 11px;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.breadcrumbs span {
+    color: #333;
+}
+
+/* Game area styling */
+.game-title {
+    padding: 20px 20px 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #2167a5;
+}
+
+/* MODIFIED: The game box is now exactly 718x541 pixels. 
+  'margin: 0 auto;' perfectly centers it horizontally. 
+*/
+.game-player-wrapper {
+    width: 718px;
+    height: 541px;
+    margin: 0 auto; 
+    background-color: #000;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.game-player-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* MODIFIED: Width updated to 718px to match the game box perfectly */
+.game-toolbar {
+    width: 718px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+    color: #555;
+    background-color: #fcfcfc;
+}
+
+.toolbar-left {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.toolbar-item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #3b73a8;
+}
+
+.toolbar-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+.rating-stars {
+    color: #f39c12;
+    font-size: 14px;
+}
+.rating-prompt {
+    background-color: #fffac9;
+    border: 1px solid #f1c40f;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    color: #333;
+}
+
+/* Floating side tabs */
+.side-tab {
+    position: absolute;
+    right: -35px;
+    top: 150px;
+    background-color: #3b73a8;
+    color: white;
+    padding: 15px 5px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 14px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="side-tab">Czat 💬</div>
+
+    <div class="header">
+        <div class="logo">
+            gierc<span class="bomb-icon">💣</span>wnia
+        </div>
+        <div class="search-box">
+            <input type="text" value="szukaj gry...">
+            <button>Szukaj</button>
+        </div>
+        <button class="add-game-btn">+ Dodaj grę</button>
+    </div>
+
+    <div class="navbar">
+        <div class="nav-links">
+            <a href="#" class="active">Gry online</a>
+            <a href="#">Ranking gier</a>
+            <a href="#">Użytkownicy</a>
+            <a href="#">Poczekalnia (639)</a>
+            <a href="#">Solucje</a>
+        </div>
+        <div class="nav-right">
+            <a href="#">Logowanie</a>
+            <a href="#">Rejestracja</a>
+            <div class="social-icons">
+                <strong style="color: #3b5998;">f</strong>
+                <strong style="color: #db4437;">g+</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="breadcrumbs">
+        <div>Gry online / Gry platformowe / <span>Red Ball 5</span></div>
+        <div>Dostępnych gier: <strong>21 826</strong></div>
+    </div>
+
+    <div class="game-title">
+        🎮 Red Ball 5
+    </div>
+
+    <div class="game-player-wrapper">
+        <iframe src="https://kdata1.com/2015/11/red-ball-5/" scrolling="no" allowfullscreen></iframe>
+    </div>
+
+    <div class="game-toolbar">
+        <div class="toolbar-left">
+            <span class="toolbar-item">👁️</span>
+            <span class="toolbar-item">⤢</span>
+            <span class="toolbar-item">🔍 🔍</span>
+            <span class="toolbar-item">💬 Skomentuj</span>
+            <span class="toolbar-item">✅ Dodaj do ulubionych</span>
+            <span class="toolbar-item">⚠️ Zgłoś problem z grą</span>
+        </div>
+        <div class="toolbar-right">
+            <div>Oceń: <span class="rating-stars">★★★★☆</span></div>
+            <div class="rating-prompt">Spodobała Ci się gra? Oceń ją!</div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
